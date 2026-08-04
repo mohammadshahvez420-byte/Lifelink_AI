@@ -41,4 +41,24 @@ def register_donor(donor: Donor):
     return {
         "message": "Donor registered successfully",
         "donor": donor
+    }  
+
+
+
+
+from fastapi import FastAPI
+from app.routes import donor
+
+app = FastAPI(
+    title="LifeLink AI",
+    version="1.0.0"
+)
+
+app.include_router(donor.router)
+
+
+@app.get("/")
+def home():
+    return {
+        "message": "Welcome to LifeLink AI"
     }
