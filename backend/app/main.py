@@ -62,3 +62,27 @@ def home():
     return {
         "message": "Welcome to LifeLink AI"
     }
+
+
+
+
+from fastapi import FastAPI
+from app.routes import donor
+
+app = FastAPI(
+    title="LifeLink AI",
+    description="AI-Powered Blood Donor Search System",
+    version="1.0.0"
+)
+
+app.include_router(
+    donor.router,
+    prefix="/donors",
+    tags=["Donors"]
+)
+
+@app.get("/")
+def home():
+    return {
+        "message": "Welcome to LifeLink AI 🚑"
+    }
